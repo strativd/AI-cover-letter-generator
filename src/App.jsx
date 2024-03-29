@@ -11,14 +11,17 @@ function App() {
   const [page, setPage] = useState(PAGES.GENERATOR);
   const [openAIKey, setOpenAIKey] = useState();
   const [resume, setResume] = useState();
+  const [template, setTemplate] = useState();
 
   // Load data from local storage on component mount
   useEffect(() => {
     const fetchLocalData = async () => {
       const localResume = await loadData("resume");
+      const localTemplate = await loadData("template");
       const localOpenAIKey = await loadData("openAIKey");
 
       setResume(localResume);
+      setTemplate(localTemplate);
       setOpenAIKey(localOpenAIKey);
     };
 
@@ -29,7 +32,12 @@ function App() {
   switch (page) {
     case PAGES.GENERATOR:
       return (
-        <Generator setPage={setPage} resume={resume} openAIKey={openAIKey} />
+        <Generator
+          setPage={setPage}
+          resume={resume}
+          openAIKey={openAIKey}
+          template={template}
+        />
       );
 
     case PAGES.PROFILE:
@@ -38,14 +46,21 @@ function App() {
           setPage={setPage}
           setOpenAIKey={setOpenAIKey}
           setResume={setResume}
+          setTemplate={setTemplate}
           resume={resume}
           openAIKey={openAIKey}
+          template={template}
         />
       );
 
     default:
       return (
-        <Generator setPage={setPage} resume={resume} openAIKey={openAIKey} />
+        <Generator
+          setPage={setPage}
+          resume={resume}
+          openAIKey={openAIKey}
+          template={template}
+        />
       );
   }
 }

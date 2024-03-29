@@ -4,19 +4,29 @@ import { PAGES } from "../utils/pages";
 import { ToastContainer, toast } from "react-toastify";
 import { saveData } from "../utils/localStorage";
 
-function Profile({ setPage, setOpenAIKey, setResume, resume, openAIKey }) {
+function Profile({
+  setPage,
+  setOpenAIKey,
+  setResume,
+  setTemplate,
+  template,
+  resume,
+  openAIKey,
+}) {
   const handleSubmt = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const updatedResume = formData.get("resume");
     const updatedOpenAIKey = formData.get("openAIKey");
+    const updatedTemplate = formData.get("template");
 
     try {
       setResume(updatedResume);
       saveData("resume", updatedResume);
-
-      saveData("openAIKey", updatedOpenAIKey);
+      setTemplate(updatedTemplate);
+      saveData("template", updatedTemplate);
       setOpenAIKey(updatedOpenAIKey);
+      saveData("openAIKey", updatedOpenAIKey);
       toast.success("Saved successfully!", {
         position: "top-center",
         autoClose: 2000,
@@ -84,9 +94,25 @@ function Profile({ setPage, setOpenAIKey, setResume, resume, openAIKey }) {
             id="resume"
             name="resume"
             defaultValue={resume}
-            rows={8}
+            rows={6}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Paste your resume here..."
+          ></textarea>
+        </div>
+        <div className="mb-6">
+          <label
+            htmlFor="template"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Cover Letter Template
+          </label>
+          <textarea
+            id="template"
+            name="template"
+            defaultValue={template}
+            rows={6}
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Paste your template here..."
           ></textarea>
         </div>
         <div className="mb-6 text-center">
