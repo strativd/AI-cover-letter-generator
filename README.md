@@ -1,54 +1,97 @@
-# LinkedIn ChatGPT Chrome Extension
+# AI Cover Letter Generator using ChatGPT 🤖
 
-LinkedIn ChatGPT is a powerful Chrome extension that simplifies and accelerates the cover letter creation process for job seekers. By locally saving your resume and OpenAI API key, the extension automatically generates personalized cover letters based on job descriptions from LinkedIn pages. This will save you time and help you craft the perfect cover letter for every job application.
+Create personalized cover letters for LinkedIn jobs based on a cover letter template ✨
 
-YouTube tutorial found here: https://www.youtube.com/watch?v=I3NUkWeHTNk
+![LinkedIn ChatGPT Logo](/public/icon.png)
 
-## Table of Contents
+The extenison securely saves your resume, cover letter template, and OpenAI API key, allowing you to generate personalized cover letters based on job descriptions from LinkedIn pages. This will save you time and help you craft a cover letter for every job application. Like most AI tools, the results aren't perfect but it's a great starting point!
 
-- [Features](https://chat.openai.com/chat?model=gpt-4#features)
-- [Installation](https://chat.openai.com/chat?model=gpt-4#installation)
-- [Configuration](https://chat.openai.com/chat?model=gpt-4#configuration)
-- [Usage](https://chat.openai.com/chat?model=gpt-4#usage)
-- [Demo and Tutorial](https://chat.openai.com/chat?model=gpt-4#demo-and-tutorial)
-- [Contribute](https://chat.openai.com/chat?model=gpt-4#contribute)
-- [License](https://chat.openai.com/chat?model=gpt-4#license)
+## 🚀 Features
 
-## Features
+- Automatically generates personalized cover letters based on job descriptions 📝
+- Saves the most recent cover letter locally with copy-to-clipboard feature 📄
+- Securely saves your resume, template, and OpenAI API key for future access 🔒
+- Integrates seamlessly with multiple LinkedIn job pages 🌐
+- User-friendly interface for easy cover letter generation 🎨
 
-- Automatically generates personalized cover letters based on job descriptions
-- Locally saves your resume and OpenAI API key for secure and efficient access
-- Integrates seamlessly with LinkedIn job pages
-- User-friendly interface for easy cover letter generation
+## 📥 Installation
 
-## Installation
+> **Note**: Make sure you have Node.js, `npm`, `pnpm`, and the [`git` CLI](https://cli.github.com/) installed on your machine before proceeding with the installation steps.
 
-1. Download the LinkedIn ChatGPT Chrome Extension from the Chrome Web Store (link to be provided).
-2. Install the extension by following the on-screen instructions.
-3. After installation, you will see a LinkedIn ChatGPT icon in your Chrome browser's extension area.
+1. Clone the repository to your local machine:
 
-## Configuration
+```bash
+gh repo clone strativd/AI-cover-letter-generator
+```
 
-1. Click on the LinkedIn ChatGPT icon in your Chrome browser to open the extension's settings.
-2. In the settings, upload your resume (PDF format) and enter your OpenAI API key.
-3. Save your settings to enable cover letter generation.
+2. Navigate to the project directory:
 
-## Usage
+```bash
+cd AI-cover-letter-generator
+```
 
-1. Navigate to a LinkedIn job page that you want to apply for.
-2. Click on the LinkedIn ChatGPT icon in your Chrome browser.
-3. The extension will read the job description and use your saved resume and API key to generate a personalized cover letter.
-4. Review and customize the generated cover letter to fit your needs.
-5. Use the generated cover letter in your job application.
+3. Install the project dependencies:
 
-## Demo and Tutorial
+```bash
+pnpm install
+```
 
-A step-by-step tutorial on how to build this Chrome extension yourself can be found on YouTube: [How to Build LinkedIn ChatGPT Chrome Extension](https://www.youtube.com/watch?v=I3NUkWeHTNk)
+4. Build the extension into the /public folder:
 
-## Contribute
+```bash
+pnpm build
+```
 
-We welcome contributions from the community. If you find any bugs, have feature requests, or want to improve the extension, feel free to open an issue or create a pull request on our GitHub repository.
+5. Open Google Chrome and go to `chrome://extensions`:
 
-## License
+```bash
+open -a "Google Chrome" chrome://extensions
+```
+
+6. Enable the "Developer mode" toggle in the top right corner.
+
+7. Install the local extension:
+
+- Click on "Load unpacked" in the top left corner.
+- Select the `public` directory inside the project directory.
+
+## Setup ⚙️
+
+> **Note**: You'll need to [create an OpenAI API key](https://platform.openai.com/api-keys) and add some funds to your [billing settings](https://platform.openai.com/account/billing/overview) to get responses from OpenAI, but it's pretty cheap to run this extension!
+
+1. Click on the extension's icon after it's been installed -> <img src="/public/favicon.ico" alt="Extension Icon" width="30px" />
+
+2. Click on the settings icon -> ⚙️
+
+3. Add your OpenAI API key 🔑
+
+4. Add your resume (text format) 📝
+
+5. Add your cover letter tempate, leaving blanks for ChatGPT to fill in 🤖
+
+<details>
+  <summary>See example template 👀</summary>
+
+Hi \_\_\_,
+
+I’m a huge fan of what you’re doing at \_\_\_! I was very inspired by \_\_\_. I know it’s hard finding the right person, so I’ll keep this brief. Here are 5 reasons I think you should consider me for the \_\_\_ role:
+
+1.
+2.
+3.
+4.
+5.
+
+</details>
+
+### 📸 Screenshot
+
+![LinkedIn ChatGPT Logo](/public/screenshot.png)
+
+## 🎥 Demo and Tutorial
+
+A step-by-step tutorial on how to build this Chrome extension yourself can be found on YouTube: [How to Build LinkedIn ChatGPT Chrome Extension](https://www.youtube.com/watch?v=I3NUkWeHTNk), thanks to Brandon Hancock! — https://github.com/bhancockio 👏
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](https://chat.openai.com/LICENSE) file for details.
