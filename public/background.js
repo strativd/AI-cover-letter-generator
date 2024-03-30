@@ -29,7 +29,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       })
       .then((queryResult) => {
         chrome.storage.local.set({ jobDescription: queryResult[0].result });
-        chrome.storage.local.set({ jobTitle: tab.title });
+        const jobTitle = tab.title.replace(/\| linkedin/i, "");
+        chrome.storage.local.set({ jobTitle });
       });
   }
 });
@@ -42,6 +43,7 @@ function getJobDescription(selector) {
 }
 
 /** Helper function to get a valid URL object */
+// eslint-disable-next-line no-unused-vars
 function getValidUrl(string) {
   let url;
 

@@ -6,12 +6,12 @@ const CHATGPT_MODEL = "gpt-3.5-turbo";
 
 // Function to send a message to the ChatGPT API and return the response
 export const postChatGPTMessage = async (
-  resume,
-  jobDescription,
-  jobTitle,
-  template,
-  openAIKey
-) => {
+  resume: string,
+  jobDescription: string,
+  jobTitle: string,
+  template: string,
+  openAIKey: string
+): Promise<string | null> => {
   // Set headers for the axios request
   const config = {
     headers: {
@@ -21,7 +21,7 @@ export const postChatGPTMessage = async (
 
   const INSTRUCTIONS =
     "You will be provided with a JOB TITLE, JOB DESCRIPTION, MY RESUME, and a COVER LETTER TEMPLATE. " +
-    "Your task is to fill in the COVER LETTER TEMPLATE based on the relevant job requirements and my resume. " +
+    "Your task is to fill in the COVER LETTER TEMPLATE based on the job requirements and my resume. " +
     "Important: only respond with the template I provided, completing all blank spaces and the numbered list (with a bold title before each description).";
   const MESSAGE = `
     1. JOB TITLE:\n\n${jobTitle}\n\n
@@ -45,7 +45,7 @@ export const postChatGPTMessage = async (
     const response = await axios.post(CHATGPT_END_POINT, chatGPTData, config);
 
     // Extract the message content from the API response
-    const message = response?.data?.choices[0]?.message.content;
+    const message: string = response?.data?.choices[0]?.message.content;
 
     // Return the message content
     return message;

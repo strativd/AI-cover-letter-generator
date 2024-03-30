@@ -1,23 +1,24 @@
 /*global chrome*/
 
 // Function to save data to local storage or Chrome extension storage
-export const saveData = (key, data) => {
+export const saveData = (key: string, value: string) => {
   if (isChromeExtension()) {
     try {
       // Save data to Chrome extension storage
-      chrome.storage.local.set({ [key]: data });
+      chrome.storage.local.set({ [key]: value });
     } catch (error) {
       console.error("Error saving to local state");
       console.error(error);
     }
   } else {
     // Save data to local storage
-    return Promise.resolve(localStorage.setItem(key, JSON.stringify(data)));
+    const data = JSON.stringify(value);
+    return Promise.resolve(localStorage.setItem(key, data));
   }
 };
 
 // Function to load data from local storage or Chrome extension storage
-export const loadData = (key) => {
+export const loadData = (key: string) => {
   if (isChromeExtension()) {
     try {
       // Load data from Chrome extension storage
@@ -28,7 +29,8 @@ export const loadData = (key) => {
     }
   } else {
     // Load data from local storage
-    return Promise.resolve(JSON.parse(localStorage.getItem(key)));
+    const data = localStorage.getItem(key) || "";
+    return Promise.resolve(JSON.parse(data));
   }
 };
 

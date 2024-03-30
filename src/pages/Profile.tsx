@@ -4,7 +4,17 @@ import { PAGES } from "../utils/pages";
 import { ToastContainer, toast } from "react-toastify";
 import { saveData } from "../utils/localStorage";
 
-function Profile({
+type Props = {
+  setPage: (page: string) => void;
+  setOpenAIKey: (key: string) => void;
+  setResume: (resume: string) => void;
+  setTemplate: (template: string) => void;
+  template: string;
+  resume: string;
+  openAIKey: string;
+};
+
+const Profile: React.FC<Props> = ({
   setPage,
   setOpenAIKey,
   setResume,
@@ -12,13 +22,13 @@ function Profile({
   template,
   resume,
   openAIKey,
-}) {
-  const handleSubmt = (e) => {
+}) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const updatedResume = formData.get("resume");
-    const updatedOpenAIKey = formData.get("openAIKey");
-    const updatedTemplate = formData.get("template");
+    const formData = new FormData(e.currentTarget);
+    const updatedResume = formData.get("resume") as string;
+    const updatedOpenAIKey = formData.get("openAIKey") as string;
+    const updatedTemplate = formData.get("template") as string;
 
     try {
       setResume(updatedResume);
@@ -65,7 +75,7 @@ function Profile({
         </button>
       </div>
 
-      <form className="flex-col" onSubmit={handleSubmt}>
+      <form className="flex-col" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label
             htmlFor="openAIKey"
@@ -127,6 +137,6 @@ function Profile({
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default Profile;

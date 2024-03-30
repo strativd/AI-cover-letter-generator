@@ -5,7 +5,19 @@ import { PAGES } from "../utils/pages";
 import { loadData, saveData } from "../utils/localStorage";
 import { postChatGPTMessage } from "../utils/chatGPT";
 
-function Generator({ setPage, resume, openAIKey, template }) {
+type Props = {
+  setPage: (page: string) => void;
+  resume: string;
+  openAIKey: string;
+  template: string;
+};
+
+const Generator: React.FC<Props> = ({
+  setPage,
+  resume,
+  openAIKey,
+  template,
+}) => {
   const [jobDescription, setJobDescription] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [coverLetter, setCoverLetter] = useState("");
@@ -41,11 +53,34 @@ function Generator({ setPage, resume, openAIKey, template }) {
         template,
         openAIKey
       );
+      if (chatGPTResponse === null) {
+        throw new Error("Error generating cover letter");
+      }
       // Update state with generated cover letter
       setCoverLetter(chatGPTResponse);
       saveData("coverLetter", chatGPTResponse);
+      toast.success(`Created cover letter for "${jobTitle}"`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (error) {
       console.error(error);
+      toast.error(`Oops! Error for "${jobTitle}". Please refresh.`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } finally {
       // Set loading state to false once the process is complete (whether it was successful or not)
       setIsLoading(false);
@@ -122,6 +157,6 @@ function Generator({ setPage, resume, openAIKey, template }) {
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default Generator;

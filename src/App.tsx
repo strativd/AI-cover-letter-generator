@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from "react";
+
 import { PAGES } from "./utils/pages";
 import Generator from "./pages/Generator";
 import Profile from "./pages/Profile";
 import { loadData } from "./utils/localStorage";
 
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   // State management
   const [page, setPage] = useState(PAGES.GENERATOR);
-  const [openAIKey, setOpenAIKey] = useState();
-  const [resume, setResume] = useState();
-  const [template, setTemplate] = useState();
+  const [openAIKey, setOpenAIKey] = useState("");
+  const [resume, setResume] = useState("");
+  const [template, setTemplate] = useState("");
 
   // Load data from local storage on component mount
   useEffect(() => {
